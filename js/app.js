@@ -8,8 +8,7 @@ var app = angular.module('app', [
     $scope.options = {
         map: {
           center: new google.maps.LatLng(59.913869, 10.752245),
-          zoom: 10,
-          mapTypeId: google.maps.MapTypeId.TERRAIN
+          zoom: 10
         },
         notselected: {
           icon: 'https://maps.gstatic.com/mapfiles/ms2/micons/red-dot.png',
@@ -20,19 +19,25 @@ var app = angular.module('app', [
       };
     
     
+    $scope.assignments = [];
     
-    $scope.getInfo = function(type) {
-        $http.get('novatransport.php?endpoint=' + type).
+    $scope.getAssignments = function() {
+        $http.get('novatransport.php?endpoint=assignments').
             success(function(data, status, headers, config) {
                 $scope.assignments = data;
-                console.log(data);
+                console.log($scope.assignments);
                 $scope.center = new google.maps.LatLng(data[0].endLatitude, data[0].endLongitude);
-                return data;
+                $scope.$broadcast('gmMarkersUpdate');
             }).
             error(function(data, status, headers, config) {
                 console.log('error');
           });
         
     }
+    
+    $scope.$on('gmMarkersUpdated', function(event, objects) {
+        console.log("markers updated..");
+    });
+    
     
 });
