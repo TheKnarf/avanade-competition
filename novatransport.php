@@ -1,4 +1,14 @@
 <?php
+    
+/**
+ *  Example usage:
+ *
+ *      /novatransport.php?endpoint=assignments
+ *          Returns a list (json) of assigments
+ *
+ */
+
+header('Content-Type: application/json');
 
 $apikey = 'a59c8fc125ca463a85433e6ef01190fe';
 $url = 'http://novatransport.azurewebsites.net/api';
