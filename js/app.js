@@ -19,14 +19,20 @@ var app = angular.module('app', [
         }
       };
     
-    $http.get('novatransport.php').
+    
+    
+    $scope.getInfo = function(type) {
+        $http.get('novatransport.php?endpoint=' + type).
             success(function(data, status, headers, config) {
                 $scope.result = data;
                 console.log(data);
+                $scope.center = new google.maps.LatLng(data[0].endLatitude, data[0].endLongitude);
+                return data;
             }).
             error(function(data, status, headers, config) {
                 console.log('error');
           });
-    
+        
+    }
     
 });
