@@ -19,14 +19,18 @@ var app = angular.module('app', [
         }
       };
     
-    $http.get('novatransport.php').
+    
+    $scope.getInfo = function(type) {
+        $http.get('novatransport.php?endpoint=' + type).
             success(function(data, status, headers, config) {
                 $scope.result = data;
                 console.log(data);
+                return data;
             }).
             error(function(data, status, headers, config) {
                 console.log('error');
           });
-    
+        
+    }
     
 });
