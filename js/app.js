@@ -22,17 +22,32 @@ var app = angular.module('app', [
     $scope.assignments = [];
     
     $scope.getAssignments = function() {
-        $http.get('novatransport.php?endpoint=assignments').
+        $http.get('novatransport.php?endpoint=assignmentcargo').
             success(function(data, status, headers, config) {
                 $scope.assignments = data;
                 console.log($scope.assignments);
+            }).
+            error(function(data, status, headers, config) {
+                console.log('error');
+          });
+        
+    }
+    
+    $scope.showAssignments = function(assignment) {
+           
+    }
+    
+    $scope.getDroppoints = function() {
+        $http.get('novatransport.php?endpoint=droppoints').
+            success(function(data, status, headers, config) {
+                $scope.droppoints = data;
+                console.log($scope.droppoints);
                 $scope.center = new google.maps.LatLng(data[0].endLatitude, data[0].endLongitude);
                 $scope.$broadcast('gmMarkersUpdate');
             }).
             error(function(data, status, headers, config) {
                 console.log('error');
           });
-        
     }
     
     $scope.$on('gmMarkersUpdated', function(event, objects) {

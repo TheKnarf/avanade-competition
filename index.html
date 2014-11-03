@@ -31,22 +31,17 @@
                     <span>Closing time</span>
                     <span></span>
                 </div>
-                <button ng-click="getAssignments()">Get assignments</button>
-
             </div>
+            <button ng-click="getDroppoints()">Get droppoints</button>
         </div>
         <div class="row">
-            <button>Assignments</button>
-            <button>Vehicles</button>
-        </div>
-        <div class="row">
-            <table>
+            <table data-ng-init="getAssignments()">
                 <tr>
-                    <td>Assignment ID</td>
-                    <td>Assignment notes</td>
-                    <td>Cargo description</td>
+                    <th>Assignment ID</th>
+                    <th>Assignment notes</th>
+                    <th>Cargo description</th>
                 </tr>
-                <tr ng-repeat="assignment in assignments">
+                <tr ng-repeat="assignment in assignments" ng-click="showAssignments(assignment)">
                     <td>{{assignment.id}}</td>
                     <td>{{assignment.notes}}</td>
                     <td>{{assignment.description}}</td>
