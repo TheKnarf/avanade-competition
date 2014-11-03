@@ -35,7 +35,24 @@
 
             </div>
         </div>
-        
+        <div class="row">
+            <button>Assignments</button>
+            <button>Vehicles</button>
+        </div>
+        <div class="row">
+            <table>
+                <tr>
+                    <td>Assignment ID</td>
+                    <td>Assignment notes</td>
+                    <td>Cargo description</td>
+                </tr>
+                <tr ng-repeat="assignment in assignments">
+                    <td>{{assignment.id}}</td>
+                    <td>{{assignment.notes}}</td>
+                    <td>{{assignment.description}}</td>
+                </tr>
+            </table>
+        </div>
     </div>
         
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
