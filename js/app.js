@@ -4,7 +4,7 @@ var app = angular.module('app', [
 ])
 
 
-.controller("HomeCtrl", function ($scope) {    
+.controller("HomeCtrl", function ($scope, $http) {    
     $scope.options = {
         map: {
           center: new google.maps.LatLng(59.913869, 10.752245),
@@ -18,4 +18,15 @@ var app = angular.module('app', [
           icon: 'https://maps.gstatic.com/mapfiles/ms2/micons/yellow-dot.png',
         }
       };
+    
+    $http.get('novatransport.php').
+            success(function(data, status, headers, config) {
+                $scope.result = data;
+                console.log(data);
+            }).
+            error(function(data, status, headers, config) {
+                console.log('error');
+          });
+    
+    
 });
